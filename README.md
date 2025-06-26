@@ -45,31 +45,31 @@ The Inventory Management & Waste Reduction System is a comprehensive solution de
 ┌─────────────────────────────────────────────────────────────┐
 │                    Data Input Layer                         │
 ├─────────────────────────────────────────────────────────────┤
-│  • Sales Data (FreshRetailNet-50K)                        │
+│  • Sales Data (FreshRetailNet-50K)                          │
 │  • Product Categories                                       │
 │  • Store Information                                        │
-│  • Weather Data                                            │
+│  • Weather Data                                             │
 │  • Temporal Features                                        │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                Processing & Analysis Layer                   │
+│                Processing & Analysis Layer                  │
 ├─────────────────────────────────────────────────────────────┤
-│  • InventoryManager: Data preparation & analysis           │
-│  • SalesForecaster: ML-based demand prediction             │
-│  • InventoryOptimizer: Stock level calculations            │
-│  • WasteReductionAnalyzer: Risk assessment                 │
-│  • RestockingScheduler: Automated scheduling               │
+│  • InventoryManager: Data preparation & analysis            │
+│  • SalesForecaster: ML-based demand prediction              │
+│  • InventoryOptimizer: Stock level calculations             │
+│  • WasteReductionAnalyzer: Risk assessment                  │
+│  • RestockingScheduler: Automated scheduling                │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Output & Visualization Layer             │
+│                   Output & Visualization Layer              │
 ├─────────────────────────────────────────────────────────────┤
-│  • Interactive Dashboards                                  │
+│  • Interactive Dashboards                                   │
 │  • Executive Reports                                        │
-│  • Restocking Schedules                                    │
+│  • Restocking Schedules                                     │
 │  • Performance Metrics                                      │
 │  • Recommendations                                          │
 └─────────────────────────────────────────────────────────────┘
