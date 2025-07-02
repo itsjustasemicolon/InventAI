@@ -1,6 +1,7 @@
   import React from 'react'
   import Home from "./components/Home.jsx"
   import Navbar from './components/Navbar.jsx'
+  import { Outlet } from 'react-router-dom'
 
   const App = () => {
     return (
@@ -18,7 +19,7 @@
         className={`relative z-10 flex min-w-full `}
         >
            <Navbar />
-           <Home />
+           <Outlet />
         </div>
       </div>
     )
