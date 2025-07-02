@@ -4,17 +4,25 @@
 
   const App = () => {
     return (
-      <div className="absolute inset-0 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
-        <div className="absolute  bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)] z-0" />
-        
-        <div className="relative z-10">
-          <Navbar >
-          </Navbar>
+      <div 
+        className={`flex flex-row min-w-screen w-full min-h-screen bg-[#f5f5f5] 
+          bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] 
+          bg-[size:6rem_4rem]`}
+      >
+        <div
+         className={`fixed bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]
+           z-0 min-h-screen `} 
+        />
 
-          <Home />
+        <div 
+        className={`relative z-10 flex min-w-full `}
+        >
+           <Navbar />
+           <Home />
         </div>
       </div>
     )
   }
 
   export default App
+
