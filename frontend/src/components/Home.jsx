@@ -1,12 +1,14 @@
 import React from 'react';
 import Card from './Card';
 
-const Home = () => {
+const Home = ({
+  HeadText = "Inventory Management System",
+}) => {
   return (
-    <div className="min-h-screen w-full px-0 py-17 flex flex-col items-center text-black">
+    <div className="min-h-screen w-full px-2 py-17 flex flex-col items-center text-black">
       <main className="text-center max-w-4xl">
         <h2 className="text-5xl font-bold leading-tight mb-6">
-          Smarter Inventory Management<br /> Powered by <span className="text-blue-500">AI</span>
+          {HeadText}<br /> Powered by <span className="text-blue-500">AI</span>
         </h2>
         <p className="text-lg text-gray-700 mb-10">
           Optimize stock levels, predict demand, reduce waste — all with intelligent automation.

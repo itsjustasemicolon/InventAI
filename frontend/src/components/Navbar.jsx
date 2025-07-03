@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from '../assets/logo.svg'; // Adjust the path as necessary
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const list_item_class = "text-gray-600 hover:text-blue-500 cursor-pointer font-arial transition-all duration-200 py-2 rounded-lg hover:bg-blue-100 w-full text-start"
+  const list_item_class = "text-gray-600 hover:text-blue-500 cursor-pointer font-arial transition-all duration-200  rounded-lg hover:bg-blue-100 w-full text-start"
   const list_class = "flex flex-wrap flex-col items-start gap-y-0.5 text-lg font-semibold  w-full";
 
 
@@ -20,8 +21,10 @@ const Navbar = () => {
 
         <div className="w-full flex flex-col items-start mb-3 gap-3">
           <div className=" flex text-2xl font-bold text-blue-500">
-            <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
-            InventAI  
+            <Link to="/" className={`cursor-pointer flex`}>
+              <img src={logo} alt="Logo" className="w-8 h-8 mr-2" />
+              InventAI  
+            </Link>
           </div>
           <hr className="w-full border-t-2 border-blue-200" />
         </div>
@@ -33,12 +36,15 @@ const Navbar = () => {
            <hr className="w-full border-t-2 border-blue-200" />
           </div>
           <ul className={list_class}>
-            <li className={list_item_class}><span className='ml-10'> 
-              Predict Demand</span></li>
-            <li className={list_item_class}><span className='ml-10'>
-              Predict Stock</span></li>
-            <li className={list_item_class}><span className='ml-10'> 
-              Store Insights</span></li>
+            <li className={list_item_class}><NavLink to="/predict-demand" className={({isActive}) => `flex ml-10 w-full py-2 ${isActive ? "text-blue-500" : ""}`}> 
+              Predict Demand
+            </NavLink></li>
+            <li className={list_item_class}><NavLink to="/reorder-stock" className={({isActive}) => `flex ml-10 w-full py-2 ${isActive ? "text-blue-500" : ""}`}>
+              Reorder Stock
+            </NavLink></li>
+            <li className={list_item_class}><NavLink to="/ps-insights" className={({isActive}) => `flex ml-10 w-full py-2 ${isActive ? "text-blue-500" : ""}`}>
+                  Store Insights
+            </NavLink></li>
           </ul>
         </div>
 
