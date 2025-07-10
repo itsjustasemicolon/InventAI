@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <div className="flex flex-col ml-6 gap-2">  
           <div className=" flex flex-col text-lg w-fit text-blue-500">
-            <span className= "mr-10 font-normal">Main Menu</span>
+            <span className= "mr-10 font-normal">List of Features</span>
            <hr className="w-full border-t-2 border-blue-200" />
           </div>
           <ul className={list_class}>
