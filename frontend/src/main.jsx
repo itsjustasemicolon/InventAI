@@ -5,7 +5,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { DemandPredict, PSInsights, Stockreorder } from './components'
+import { DemandPredict, PSInsights, Stockreorder, UploadCSV, UpdateData } from './components'
+import LoginPage from './components/Login/LoginPage.jsx';
+import RegisterPage from './components/Login/RegisterPage.jsx';
 import Home from './components/Home.jsx'
 
 const router = createBrowserRouter(
@@ -21,14 +23,30 @@ const router = createBrowserRouter(
         {
           path: 'predict-demand',
           element: <DemandPredict />,
-        } , 
+        },
         {
-          path : 'reorder-stock' ,
-          element : <Stockreorder />,
-        } , 
+          path: 'reorder-stock',
+          element: <Stockreorder />,
+        },
         {
-          path : 'ps-insights' ,
-          element : <PSInsights />,
+          path: 'ps-insights',
+          element: <PSInsights />,
+        },
+        {
+          path: 'upload-csv',
+          element: <UploadCSV />,
+        },
+        {
+          path: 'update-data',
+          element: <UpdateData />,
+        },
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
+        {
+          path: 'register',
+          element: <RegisterPage />,
         }
       ]
     }
