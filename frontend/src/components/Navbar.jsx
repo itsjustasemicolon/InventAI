@@ -3,8 +3,8 @@ import logo from '../assets/logo.svg'; // Adjust the path as necessary
 import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const list_item_class = "text-gray-600 hover:text-blue-500 cursor-pointer font-arial transition-all duration-200  rounded-lg hover:bg-blue-100 w-full text-start"
-  const list_class = "flex flex-wrap flex-col items-start gap-y-0.5 text-lg font-semibold  w-full";
+  const list_item_class = "text-gray-600 hover:text-blue-500 cursor-pointer  transition-all duration-200 rounded-lg hover:bg-blue-100 w-full text-start"
+  const list_class = "flex flex-wrap flex-col items-start gap-y-0.5 text-lg font-normal  w-full";
 
 
 
@@ -13,7 +13,7 @@ const Navbar = () => {
 
 
     <nav
-      className="h-screen sticky padding top-0 left-0 flex flex-col backdrop-blur-md px-3 py-4 justify-between items-center gap-y-3 mx-2.5 my-4 bg-white min-w-[300px] shadow-md rounded-lg z-10"
+      className="h-screen sticky padding top-0 left-0 flex flex-col backdrop-blur-md px-3 py-4 justify-between items-center gap-y-3 mx-2.5 my-4 bg-white min-w-[18rem] shadow-md  rounded-lg z-10 font-[roboto]"
     >
 
   
@@ -31,8 +31,8 @@ const Navbar = () => {
 
 
         <div className="flex flex-col ml-6 gap-2">  
-          <div className=" flex flex-col text-lg font-medium w-fit text-blue-500">
-            <span className= "mr-10">Main Menu</span>
+          <div className=" flex flex-col text-lg w-fit text-blue-500">
+            <span className= "mr-10 font-normal">Main Menu</span>
            <hr className="w-full border-t-2 border-blue-200" />
           </div>
           <ul className={list_class}>
