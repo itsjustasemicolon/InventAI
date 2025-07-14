@@ -1,11 +1,16 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { useUser } from '../contexts/userContext';
 
 const Navbar = () => {
+  
   const list_item_class = "text-gray-600 hover:text-blue-500 cursor-pointer transition-all duration-200 rounded-lg hover:bg-blue-100 w-full text-start";
   const list_class = "flex flex-wrap flex-col items-start gap-y-0.5 text-lg font-normal w-full";
   const location = useLocation();
+  const {isLoggedIn , setLoggedIn , username , setUsername} = useUser();
+  console.log(isLoggedIn , username)
+  // console.log(isLoggedIn , username)
 
   return (
     <nav className="h-screen sticky padding top-0 left-0 flex flex-col backdrop-blur-md px-3 py-4 justify-between items-center gap-y-3 mx-2.5 my-4 bg-white min-w-[18rem] shadow-lg rounded-lg z-10 font-[roboto]">
@@ -50,7 +55,17 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="w-full px-4 flex flex-col gap-2">
+      {
+        isLoggedIn? 
+        <button 
+        onClick = {() => {
+          setLoggedIn(false);
+          setUsername("");
+        }}
+
+        className='w-full py-2 px-4 bg-blue-500 text-white rounded-lg text-center font-medium hover:bg-blue-600 transition-colors'
+        >Logout</button>
+        :<div className="w-full px-4 flex flex-col gap-2">
         {location.pathname !== '/login' && location.pathname !== '/register' && (
           <>
             <Link to="/login" className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg text-center font-medium hover:bg-blue-600 transition-colors">
@@ -61,7 +76,7 @@ const Navbar = () => {
             </Link>
           </>
         )}
-      </div>
+      </div>}
     </nav>
   );
 };

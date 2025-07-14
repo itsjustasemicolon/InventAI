@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Home from '../Home';
+import { useUser } from '../../contexts/userContext';
 // Mock user database - in real app this would be server-side
 const MOCK_USERS = {
   admin: { username: 'admin', password: 'admin123', role: 'admin' },
@@ -12,12 +13,14 @@ function LoginPage({ onLogin, requiredRole }) {
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const {isLoggedIn , setLoggedIn} = useUser();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async () => {
+
     setError('');
     setLoading(true);
 
@@ -60,6 +63,7 @@ function LoginPage({ onLogin, requiredRole }) {
       setError('Login failed. Please try again.');
       setLoading(false);
     }
+    setLoggedIn(true);
   };
 
   const getRoleDisplayName = (role) => {

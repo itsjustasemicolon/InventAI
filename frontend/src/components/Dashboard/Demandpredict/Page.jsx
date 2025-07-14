@@ -18,16 +18,16 @@ export function DemandPredict() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/predict-demand', {
+      const res = await fetch('http://localhost:8000/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify(form)
       });
       const data = await res.json();
-      if (res.ok) setResult(data.predicted_demand);
+      console.log(data)
+      if (res.ok) setResult(data.predictions);
       else setError(data.message || 'Prediction failed');
     } catch (err) {
       setError('Failed to connect to the server');
@@ -50,9 +50,9 @@ export function DemandPredict() {
                 </label>
                 <input
                   type="text"
-                  id="store_id"
-                  name="store_id"
-                  value={form.store_id}
+                  id="Store ID"
+                  name="Store ID"
+                  value={form["Store ID"]}
                   onChange={handleChange}
                   className="mt-1 block w-full p-4 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm transition-colors"
                   required
@@ -65,9 +65,9 @@ export function DemandPredict() {
                 </label>
                 <input
                   type="text"
-                  id="item_id"
-                  name="item_id"
-                  value={form.item_id}
+                  id="Product ID"
+                  name="Product ID"
+                  value={form["Product ID"]}
                   onChange={handleChange}
                   className="mt-1 block w-full p-4  rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm transition-colors"
                   required
@@ -76,13 +76,13 @@ export function DemandPredict() {
 
               <div className="space-y-2 md:col-span-2">
                 <label htmlFor="date" className="block  text-sm font-medium text-gray-700">
-                  Date
+                  Inventory Level
                 </label>
                 <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  value={form.date}
+                  type="text"
+                  id="Inventory Level"
+                  name="Inventory Level"
+                  value={form["Inventory Level"]}
                   onChange={handleChange}
                   className="mt-1 block w-full p-4 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm transition-colors"
                   required
@@ -110,7 +110,13 @@ export function DemandPredict() {
           {result !== null && (
             <div className="mt-6 p-6 bg-green-50 border border-green-200 rounded-lg text-center animate-fade-in">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">Predicted Demand</h3>
-              <p className="text-3xl font-bold text-green-600">{result}</p>
+              <p className="text-3xl font-bold text-green-600">{result.demand_forecast}</p>
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">Stock Ratio</h2>
+              <p className="text-3xl font-bold text-green-600">{result.stock_ratio}</p>
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">Stock status</h2>
+              <p className="text-3xl font-bold text-green-600">{result.stock_status}</p>
+              <h2 className="text-lg font-semibold text-gray-800 mb-2">AI recommends</h2>
+              <p className="text-3xl font-bold text-green-600">{result.recommendation}</p>
               <p className="text-sm text-gray-600 mt-2">units</p>
             </div>
           )}

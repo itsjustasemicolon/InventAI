@@ -185,6 +185,7 @@ def predict():
         
         # Get JSON data from request
         data = request.get_json()
+        print(data);
         
         if not data:
             return jsonify({
@@ -437,6 +438,6 @@ if __name__ == '__main__':
     # Run the Flask app
     app.run(
         host='0.0.0.0',
-        port=5000,
+        port=8000,
         debug=True  # Set to False in production
     )
