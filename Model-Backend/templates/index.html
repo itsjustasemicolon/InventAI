@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management API</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .get { background-color: #28a745; }
+        .post { background-color: #007bff; }
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .example {
+            background: #e8f5e8;
+            border: 1px solid #c3e6c3;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .response {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .feature {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .test-section {
+            background: #f0f8ff;
+            border: 2px solid #4682b4;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏪 Inventory Management API</h1>
+        
+        <div class="feature">
+            <h3>🚀 Features</h3>
+            <ul>
+                <li>Demand forecasting using machine learning</li>
+                <li>Real-time inventory analysis</li>
+                <li>Batch predictions for multiple items</li>
+                <li>Stock ratio calculations and recommendations</li>
+                <li>Critical item identification</li>
+                <li>RESTful API with JSON responses</li>
+            </ul>
+        </div>
+
+        <h2>📋 API Endpoints</h2>
+
+        <div class="endpoint">
+            <h3><span class="method get">GET</span>/health</h3>
+            <p>Check API health status and model availability.</p>
+            <div class="response">
+                <strong>Response:</strong>
+                <pre>{
+  "status": "healthy",
+  "model_loaded": true,
+  "timestamp": "2024-07-14T10:30:00"
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method post">POST</span>/predict</h3>
+            <p>Predict demand for a single inventory item.</p>
+            <div class="example">
+                <strong>Request Body:</strong>
+                <pre>{
+  "Store ID": "S001",
+  "Product ID": "P001",
+  "Inventory Level": 200
+}</pre>
+            </div>
+            <div class="response">
+                <strong>Response:</strong>
+                <pre>{
+  "success": true,
+  "input": {
+    "Store ID": "S001",
+    "Product ID": "P001",
+    "Inventory Level": 200
+  },
+  "predictions": {
+    "demand_forecast": 156.75,
+    "current_inventory": 200,
+    "stock_ratio": 0.78,
+    "stock_status": "Good - Adequate inventory",
+    "recommendation": "Monitor regularly"
+  },
+  "timestamp": "2024-07-14T10:30:00"
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method post">POST</span>/predict/batch</h3>
+            <p>Predict demand for multiple inventory items in a single request.</p>
+            <div class="example">
+                <strong>Request Body:</strong>
+                <pre>{
+  "items": [
+    {
+      "Store ID": "S001",
+      "Product ID": "P001",
+      "Inventory Level": 200
+    },
+    {
+      "Store ID": "S002",
+      "Product ID": "P002",
+      "Inventory Level": 150
+    }
+  ]
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <h3><span class="method post">POST</span>/inventory/analysis</h3>
+            <p>Perform comprehensive inventory analysis with insights and recommendations.</p>
+            <div class="example">
+                <strong>Request Body:</strong>
+                <pre>{
+  "items": [
+    {
+      "Store ID": "S001",
+      "Product ID": "P001",
+      "Inventory Level": 200
+    },
+    {
+      "Store ID": "S002",
+      "Product ID": "P002",
+      "Inventory Level": 150
+    }
+  ]
+}</pre>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>🧪 Test the API</h3>
+            <p>Test the prediction endpoint directly from this page:</p>
+            
+            <div>
+                <label>Store ID:</label>
+                <input type="text" id="storeId" value="S001" placeholder="Enter Store ID">
+            </div>
+            
+            <div>
+                <label>Product ID:</label>
+                <input type="text" id="productId" value="P001" placeholder="Enter Product ID">
+            </div>
+            
+            <div>
+                <label>Inventory Level:</label>
+                <input type="number" id="inventoryLevel" value="200" placeholder="Enter Inventory Level">
+            </div>
+            
+            <button onclick="testPrediction()">🔮 Test Prediction</button>
+            <button onclick="testHealth()">💚 Test Health</button>
+            <button onclick="clearResult()">🧹 Clear Result</button>
+            
+            <h4>Result:</h4>
+            <div id="result">Click a test button to see results...</div>
+        </div>
+
+        <h2>📖 Usage Examples</h2>
+
+        <h3>Python Example</h3>
+        <pre>import requests
+import json
+
+# Single prediction
+url = "http://localhost:5000/predict"
+data = {
+    "Store ID": "S001",
+    "Product ID": "P001",
+    "Inventory Level": 200
+}
+
+response = requests.post(url, json=data)
+result = response.json()
+print(f"Predicted demand: {result['predictions']['demand_forecast']}")
+print(f"Recommendation: {result['predictions']['recommendation']}")
+</pre>
+
+        <h3>cURL Example</h3>
+        <pre>curl -X POST http://localhost:5000/predict \
+  -H "Content-Type: application/json" \
+  -d '{
+    "Store ID": "S001",
+    "Product ID": "P001",
+    "Inventory Level": 200
+  }'</pre>
+
+        <h3>JavaScript/Fetch Example</h3>
+        <pre>fetch('http://localhost:5000/predict', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    'Store ID': 'S001',
+    'Product ID': 'P001',
+    'Inventory Level': 200
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Predicted demand:', data.predictions.demand_forecast);
+  console.log('Recommendation:', data.predictions.recommendation);
+});</pre>
+
+        <h2>🔧 Setup Instructions</h2>
+        <ol>
+            <li>Install required packages: <code>pip install flask flask-cors pandas numpy scikit-learn lightgbm joblib</code></li>
+            <li>Ensure your <code>demand_model.pkl</code> file is in the same directory as <code>app.py</code></li>
+            <li>Run the server: <code>python app.py</code></li>
+            <li>Access the API at <code>http://localhost:5000</code></li>
+        </ol>
+
+        <h2>🛡️ Error Handling</h2>
+        <p>The API includes comprehensive error handling for:</p>
+        <ul>
+            <li>Missing required fields</li>
+            <li>Invalid data types</li>
+            <li>Model loading errors</li>
+            <li>Prediction failures</li>
+        </ul>
+
+        <div class="feature">
+            <h3>📊 Stock Status Categories</h3>
+            <ul>
+                <li><strong>Critical:</strong> Stock ratio > 1.5 (High demand, low inventory)</li>
+                <li><strong>Warning:</strong> Stock ratio > 1.0 (Demand exceeds inventory)</li>
+                <li><strong>Good:</strong> Stock ratio > 0.7 (Adequate inventory)</li>
+                <li><strong>Overstocked:</strong> Stock ratio ≤ 0.7 (Low demand)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function testPrediction() {
+            const storeId = document.getElementById('storeId').value;
+            const productId = document.getElementById('productId').value;
+            const inventoryLevel = document.getElementById('inventoryLevel').value;
+            
+            if (!storeId || !productId || !inventoryLevel) {
+                document.getElementById('result').textContent = 'Please fill in all fields.';
+                return;
+            }
+            
+            const data = {
+                "Store ID": storeId,
+                "Product ID": productId,
+                "Inventory Level": parseInt(inventoryLevel)
+            };
+            
+            try {
+                document.getElementById('result').textContent = 'Making prediction...';
+                
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        async function testHealth() {
+            try {
+                document.getElementById('result').textContent = 'Checking health...';
+                
+                const response = await fetch('/health');
+                const result = await response.json();
+                document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        function clearResult() {
+            document.getElementById('result').textContent = 'Click a test button to see results...';
+        }
+    </script>
+</body>
+</html>
