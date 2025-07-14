@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 import logging
 from typing import Dict, List, Any
 import traceback
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -15,6 +16,61 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)  # Enable Cross-Origin Resource Sharing
+
+class SimplePreprocessor:
+    def __init__(self):
+        self.store_encoder = LabelEncoder()
+        self.product_encoder = LabelEncoder()
+        self.scaler = StandardScaler()
+        self.fitted = False
+    
+    def fit(self, X):
+        # Encode categorical features
+        self.store_encoder.fit(X['Store ID'].astype(str))
+        self.product_encoder.fit(X['Product ID'].astype(str))
+        
+        # Create encoded dataframe for scaling
+        X_encoded = X.copy()
+        X_encoded['Store ID'] = self.store_encoder.transform(X['Store ID'].astype(str))
+        X_encoded['Product ID'] = self.product_encoder.transform(X['Product ID'].astype(str))
+        
+        # Fit scaler on all features
+        self.scaler.fit(X_encoded)
+        self.fitted = True
+        return self
+    
+    def transform(self, X):
+        if not self.fitted:
+            raise ValueError("Preprocessor not fitted yet")
+        
+        X_encoded = X.copy()
+        
+        # Handle unknown categories by assigning them to the most frequent category
+        store_values = X['Store ID'].astype(str)
+        product_values = X['Product ID'].astype(str)
+        
+        # For new categories, use the first category seen during training
+        store_encoded = []
+        for val in store_values:
+            if val in self.store_encoder.classes_:
+                store_encoded.append(self.store_encoder.transform([val])[0])
+            else:
+                store_encoded.append(0)  # Default to first class
+        
+        product_encoded = []
+        for val in product_values:
+            if val in self.product_encoder.classes_:
+                product_encoded.append(self.product_encoder.transform([val])[0])
+            else:
+                product_encoded.append(0)  # Default to first class
+        
+        X_encoded['Store ID'] = store_encoded
+        X_encoded['Product ID'] = product_encoded
+        
+        return self.scaler.transform(X_encoded)
+    
+    def fit_transform(self, X):
+        return self.fit(X).transform(X)
 
 class InventoryPredictor:
     def __init__(self, model_path: str = 'demand_model.pkl'):
